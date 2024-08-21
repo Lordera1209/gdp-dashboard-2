@@ -7,7 +7,7 @@ import time
 def set_bar(t):
     word = st.empty()
     bar = st.progress(0)
-    for i in range(100):
+    for i in range(80):
         word.text('加载进度...' + str(i + 1) + "%")
         bar.progress(i + 1)
         time.sleep(t)
@@ -43,7 +43,7 @@ if prompt := st.chat_input("📜请输入搜索语句...📜"):
         full_response = ""
         
         # assistant_response = bot(prompt)
-        set_bar(0.02)
+        set_bar(0.01)
         
         dic = {"结果一": 0, "结果二": 1, "结果三": 2}
         first_row = "您的场景意图判断结果如下"
@@ -56,7 +56,7 @@ if prompt := st.chat_input("📜请输入搜索语句...📜"):
         
         for chunk in assistant_response:
             full_response += chunk
-            time.sleep(0.02)
+            time.sleep(0.01)
             message_placeholder.markdown(full_response + "|")
         
         message_placeholder.markdown(full_response)
