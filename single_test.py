@@ -63,19 +63,6 @@ def recognize_item(config, label_result):
     return item_result
 
 
-def test_app(prompt):
-    t_config = Config()
-    
-    text_tokenizer = lambda x: [y for y in x]
-    with open('./vocab.pkl', 'rb') as file:
-        text_vocab = pkl.load(file)
-    with open('./model_dict.pkl', 'rb') as file:
-        model_dict = pkl.load(file)
-    text_label = recognize_label(t_config, prompt, text_vocab, text_tokenizer, model_dict)
-    text_item = recognize_item(t_config, text_label)
-    return text_item
-
-
 def test():
     warnings.filterwarnings('ignore')
     t_config = Config()
@@ -103,5 +90,22 @@ def test():
         print(text_item)
 
 
+def test_app(text_input):
+    warnings.filterwarnings('ignore')
+    t_config = Config()
+    
+    text_tokenizer = lambda x: [y for y in x]
+    with open('./vocab.pkl', 'rb') as file:
+        text_vocab = pkl.load(file)
+    with open('./model_dict.pkl', 'rb') as file:
+        model_dict = pkl.load(file)
+    
+    text_label = recognize_label(t_config, text_input, text_vocab, text_tokenizer, model_dict)
+    text_item = recognize_item(t_config, text_label)
+    
+    return text_item
+
+
 if __name__ == '__main__':
     test()
+
